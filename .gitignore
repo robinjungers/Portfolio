@@ -1,0 +1,8 @@
+.DS_Store
+.next/
+__pycache__
+*.npz
+node_modules/
+out/
+public/images/*-64.jpg
+public/images/*-2000.jpg

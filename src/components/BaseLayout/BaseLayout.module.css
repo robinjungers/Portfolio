@@ -1,0 +1,87 @@
+.Container,
+.Header,
+.Main
+{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.Container
+{
+	margin-top: 200px;
+	margin-bottom: 300px;
+}
+.Header_Name
+{
+	font-size: 0.9em;
+	width: 100%;
+	max-width: 400px;
+}
+.Header_Name h1
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Header_Name-Back h1::before
+{
+  display: inline-block;
+  content: '<';
+  margin-right: 0.8em;
+  font-size: 0.8em;
+  transition-property: transform;
+  transition-duration: 0.1s;
+  transition-timing-function: ease;
+}
+.Header_Name-Back h1:hover::before
+{
+  transform: translateX(-5px);
+}
+.Header_Role
+{
+	font-size: 1.05em;
+}
+.Header_Role-1
+{
+	margin-top: 30px;
+	width: 100%;
+	max-width: 500px;
+}
+.Header_Role-2
+{
+	margin-top: 20px;
+	width: 100%;
+	max-width: 500px;
+}
+.Header_Page
+{
+  margin-top: 50px;
+  width: 100%;
+	max-width: 800px;
+  font-size: 1.2em;
+}
+.Social
+{
+	margin-top: 80px;
+	font-size: 0.65em;
+	max-width: 1000px;
+}
+.Social_Link + .Social_Link::before
+{
+	content: ', ';
+}
+.Social_Link::before
+{
+	content: ' ';
+}
+.Footer
+{
+	font-size: 0.55em;
+	margin-top: 40px;
+	max-width: 800px;
+}
+.Footer > * + *::before
+{
+	content: ' ';
+}
