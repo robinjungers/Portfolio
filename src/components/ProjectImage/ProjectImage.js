@@ -1,7 +1,6 @@
 import css from './ProjectImage.module.css';
 import React from 'react';
 import chroma from 'chroma-js';
-import { randomInt } from '@/lib/utils';
 
 export default function ProjectImage( {
   url,
@@ -24,35 +23,31 @@ export default function ProjectImage( {
     const diffColor2 = diffColor2Raw
       .set( 'hsl.s', Math.min( diffColor2Raw.get( 'hsl.s' ), 0.10 ) )
       .set( 'hsl.l', Math.min( diffColor2Raw.get( 'hsl.l' ), 0.25 ) );
-
-    let imageWidth;
-    let imageHeight;
-    
-    if ( width / height > 1.0 ) {
-      imageWidth = `${ randomInt( 40, 60 ) }vw`;
-      imageHeight = `auto`;
-    } else {
-      imageWidth = 'auto';
-      imageHeight = `${ randomInt( 60, 80 ) }vh`;
-    }
     
     return {
       backgroundColor1 : diffColor1.css(),
       backgroundColor2 : diffColor2.css(),
-      imageWidth,
-      imageHeight,
     };
   }, [
-    width,
-    height,
     colors,
   ] );
 
+  let imageWidth;
+  let imageHeight;
+
+  if ( width / height > 1.0 ) {
+    imageWidth = null;
+    imageHeight = 'auto';
+  } else {
+    imageWidth = 'auto';
+    imageHeight = null;
+  }
+
   return (
-    <div className={ css['Container'] } style={{
+    <div className={ css['Container'] }>
+      <div className={ css['Frame'] } style={{
       backgroundColor : style.backgroundColor1,
     }}>
-      <div className={ css['Frame'] }>
         <div className={ css['Toolbar'] } style={{
           backgroundColor : style.backgroundColor2,
         }}>
@@ -68,8 +63,8 @@ export default function ProjectImage( {
           width={ width }
           height={ height }
           style={{
-            width : style.imageWidth,
-            height : style.imageHeight,
+            width : imageWidth,
+            height : imageHeight,
           }}
         />
       </div>

@@ -2,21 +2,62 @@
 {
 	width: 100%;
 	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 }
+.Intro
+{
+	width: 100%;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.Title
+{
+	width: 100%;
+	max-width: 800px;
+	font-size: 1.1em;
+}
+.Texts
+{
+	margin-top: 50px;
+}
+.Texts > * + *
+{
+	margin-top: 25px;
+}
+.Text
+{
+	width: 100vw;
+	max-width: 600px;
+	font-size: 0.6em;
+	line-height: 1.4em;
+}
+.Text p
+{
+	max-width: 500px;
+}
 .Images
 {
 	position: relative;
+	border-color: hsla(0, 0%, 70%, 1.0);
+	border-width: 1px;
+	border-style: solid;
+	border-left: none;
+	border-right: none;
 }
 .Images > * + *
 {
-	margin-top: 100px;
+	border-top-color: hsla(0, 0%, 70%, 1.0);
+	border-top-width: 1px;
+	border-top-style: solid;
 }
 .Image
 {
+	width: 100vw;
 	display: flex;
 	flex-direction: row;
 	align-items: center;

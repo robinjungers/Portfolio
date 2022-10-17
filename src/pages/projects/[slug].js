@@ -125,6 +125,8 @@ export async function getStaticProps( { params } ) {
       slug : project.slug,
       title : project.title,
       headline : project.headline,
+      texts : project.texts,
+      roles : project.roles,
       images,
     },
   }

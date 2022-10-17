@@ -1,18 +1,20 @@
 .Container
 {
+  width: 100%;
   padding: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .Frame
 {
-  overflow: hidden;
+  padding: 100px;
 }
 .Image
 {
-  width: 100%;
-  height: auto;
+  width: 60vw;
+  height: 80vh;
 }
 .Toolbar
 {

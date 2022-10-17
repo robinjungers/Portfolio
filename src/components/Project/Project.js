@@ -3,24 +3,51 @@ import css from './Project.module.css';
 import ProjectImage from '../ProjectImage';
 import useNoiseValues from '@/hooks/useNoiseValues';
 import BaseLayout from '../BaseLayout';
+import OffsetContainer from '../OffsetContainer';
 
 export default function Project( {
   slug,
   title,
   headline,
   images,
+  texts,
+  roles,
 } ) {
-  const offsets = useNoiseValues( 4 );
+  const offsets = useNoiseValues( texts.length + 2, 1.0 );
+  const angles = useNoiseValues( texts.length, 1.0 );
 
   return (
     <BaseLayout
       isProject={ true }
       titleNoiseValue={ offsets[0] }
-      roleNoiseValue1={ offsets[1] }
-      roleNoiseValue2={ offsets[2] }
-      pageTitle={ title }
-      pageTitleNoiseValue={ offsets[3] }
     >
+      <div className={ css['Intro'] }>
+        <OffsetContainer
+          className={ css['Title'] }
+          randomValue={ offsets[1] }
+        >
+          <h4>
+            { title }
+          </h4>
+        </OffsetContainer>
+
+        <div className={ css['Texts'] }>
+          { texts.map( ( text, i ) => (
+            <OffsetContainer
+              className={ css['Text'] }
+              randomValue={ offsets[i + 2] }
+              key={ i }
+            >
+              <p style={{
+                transform : `rotate(${3.0 * angles[i]}deg)`,
+              }}>
+                { text }
+              </p>
+            </OffsetContainer>
+          ) ) }
+        </div>
+      </div>
+
       <div className={ css['Container'] }>
         <ul className={ css['Images'] }>
           { images.map( ( image, i ) => (

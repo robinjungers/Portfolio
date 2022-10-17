@@ -5,22 +5,22 @@ import BaseLink from '../BaseLink';
 import Link from 'next/link';
 
 export default function BaseLayout( {
-  isProject,
-  titleNoiseValue,
-  roleNoiseValue1,
-  roleNoiseValue2,
-  pageTitle,
-  pageTitleNoiseValue,
+  isProject = false,
+  titleNoiseValue = 0.0,
+  roleNoiseValue1 = 0.0,
+  roleNoiseValue2 = 0.0,
   children,
 } ) {
   return (
-    <div className={ css['Container'] }>
+    <div
+      className={ classnames( {
+        [css['Container']] : true,
+        [css['Container-Project']] : isProject,
+      } ) }
+    >
       <header className={ css['Header'] }>
 				<OffsetContainer
-					className={ classnames( {
-            [css['Header_Name']] : true,
-            [css['Header_Name-Back']] : isProject,
-          } ) }
+					className={ css['Header_Name'] }
 					randomValue={ titleNoiseValue }
 				>
           <Link href="/">
@@ -55,17 +55,6 @@ export default function BaseLayout( {
 						Interactive software
 					</h3>
 				</OffsetContainer>
-        
-        { pageTitle && (
-          <OffsetContainer
-            className={ css['Header_Page'] }
-            randomValue={ pageTitleNoiseValue }
-          >
-            <h4>
-              { pageTitle }
-            </h4>
-          </OffsetContainer>
-        ) }
 			</header>
 
       <main className={ css['Main'] }>
