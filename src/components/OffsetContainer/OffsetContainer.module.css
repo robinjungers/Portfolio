@@ -8,3 +8,25 @@
 {
   position: relative;
 }
+@media screen and ( max-width: 900px )
+{
+  .Container-RespMedium
+  {
+    justify-content: flex-start;
+  }
+  .Container-RespMedium .Inner
+  {
+    position: initial;
+  }
+}
+@media screen and ( max-width: 600px )
+{
+  .Container-RespSmall
+  {
+    justify-content: flex-start;
+  }
+  .Container-RespSmall .Inner
+  {
+    position: initial;
+  }
+}

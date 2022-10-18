@@ -54,38 +54,40 @@ async function preparePalette( filename ) {
     .raw()
     .toBuffer();
   const array = new Uint8Array( buffer );
-  const colors = [];
+  const pixels = [];
 
   for ( let i = 0; i < array.length; i += 3 ) {
-    colors.push( [
+    pixels.push( [
       array[i + 0],
       array[i + 1],
       array[i + 2],
     ] );
   }
 
-  const { centroids } = kmeans( colors, 5 );
-  const orderedCentroids = centroids.sort( ( a, b ) =>
-    chroma( b.centroid ).get( 'lab.l' ) - chroma( a.centroid ).get( 'lab.l') );
-  const orderedColors = orderedCentroids.map( centroid => {
-    const color = chroma( centroid.centroid );
-    const s = color.get( 'hsl.s' );
-    const l = color.get( 'hsl.l' );
+  const { centroids } = kmeans( pixels, 5 );
+  const colors = centroids.map( centroid =>( {
+    ratio : centroid.size / pixels.length,
+    color : chroma( centroid.centroid ),
+  } ) );
 
-    const primary = color.css();
-    const secondary = color
-      .set( 'hsl.s', Math.min( s, 0.15 ) )
-      .set( 'hsl.l', Math.max( l, 0.75 ) )
-      .css();
-
-    return {
-      ratio : centroid.size / colors.length,
-      primary,
-      secondary,
-    };
-  } );
+  const topColors = [...colors].sort( ( a, b ) => b.ratio - a.ratio );
+  const topColor = chroma( topColors[0].color );
+  const diffColors = [...colors].sort( ( a, b ) => (
+      chroma.contrast( b.color, topColor ) -
+      chroma.contrast( a.color, topColor ) ) );
+  const diffColor1Raw = chroma( diffColors[0].color );
+  const diffColor1 = diffColor1Raw
+    .set( 'hsl.s', Math.min( diffColor1Raw.get( 'hsl.s' ), 0.05 ) )
+    .set( 'hsl.l', Math.max( diffColor1Raw.get( 'hsl.l' ), 0.75 ) );
+  const diffColor2Raw = chroma( diffColors[1].color );
+  const diffColor2 = diffColor2Raw
+    .set( 'hsl.s', Math.min( diffColor2Raw.get( 'hsl.s' ), 0.10 ) )
+    .set( 'hsl.l', Math.min( diffColor2Raw.get( 'hsl.l' ), 0.25 ) );
 	
-	return orderedColors
+	return {
+    color1 : diffColor1.css(),
+    color2 : diffColor2.css(),
+  };
 }
 
 export async function getStaticPaths() {
@@ -104,8 +106,7 @@ export async function getStaticProps( { params } ) {
   const images = await Promise.all( project.images.map( async image => {
     const largeInfo = await prepareImage( image.path, 2000 );
     const smallInfo = await prepareImage( image.path, 64 );
-    const colors = await preparePalette( image.path );
-    const isLight = chroma( colors[0].primary ).luminance() > 0.5;
+    const palette = await preparePalette( image.path );
 
     return {
       alt : image.alt,
@@ -115,8 +116,8 @@ export async function getStaticProps( { params } ) {
       smallUrl : smallInfo.url,
       smallWidth : smallInfo.width,
       smallHeight : smallInfo.height,
-      colors,
-      isLight,
+      color1 : palette.color1,
+      color2 : palette.color2,
     };
    } ) );
 

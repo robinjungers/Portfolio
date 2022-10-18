@@ -23,8 +23,8 @@ export default [
     ],
     texts : [
       `Together with JAGDA (Japan Graphic Designer Association), this exhibition explores AI technologies and their potential uses for graphic design.`,
-      `This particular piece was presented as an interactive installation displaying years worth of material, including posters, illustrations, typographic works, etc.`,
-      `Using feature extraction models, the archives are mapped into a multidimensional space that translates similarities between works, thus allowing to propose a natural, intuitive way of browsing large amounts of contents.`,
+      `This particular piece is presented as an interactive installation displaying years worth of material, including posters, illustrations, typographic works, etc.`,
+      `Using feature extraction models, the archives are mapped into a multidimensional space that translates similarities between works, thus allowing to propose an intuitive way of browsing large amounts of contents.`,
     ],
     roles : [
       'Machine learning development',
@@ -47,9 +47,9 @@ export default [
     ],
     texts : [
       `Horizon is an experimental project developped as part of an exchange program at the Future University of Hakodate, in the north of Japan.`,
-      `Presented as an audiovisual installation during the annual exhibition of the lab, it attemps to continuously produce a sci-fi movie scene, using only generative techniques for its graphics.`,
-      `The methods used for rendering the images were directly inspired by the demoscene community, where no disrete geometry is used - pixels are essentially the result of mathematical functions, called signed distance functions.`,
-      `To further evoke a movie scene, the setup picks and displays random quotes from subtitle tracks of actual sci-fi movie.`,
+      `Presented as an audiovisual installation during the annual exhibition of the lab, it showcases continuous a sci-fi movie scene, using only generative techniques for its graphics.`,
+      `The methods used for rendering the images were directly inspired by the demoscene community, where no disrete geometry is used - pixels are mostly the result of mathematical functions, allowing to bend the rules of physics.`,
+      `At times, to further evoke a movie scene, the setup picks and displays random quotes from subtitle tracks of actual sci-fi movie.`,
     ],
     roles : [
       'Concept direction',
@@ -79,9 +79,9 @@ export default [
       },
     ],
     texts : [
-      `In 2020, the Sapporo International Art Festival (SIAF) was held online. For the occasion, we explored ways of conveying the original spatial context of the exhibition.`,
-      `Using natural language processing techniques, the description of artworks were analyzed and used to infer a mapping of proximity behind the different projects.`,
-      `After choosing among several key concepts, visitors are presented with a virtual walk through this map, as if it was an actual gallery space.`,
+      `Due the pandeminc in 2020, the Sapporo International Art Festival (SIAF) was held online. For the occasion, we explored ways of conveying the original spatial context of the exhibition.`,
+      `Using natural language processing techniques, the descriptions of the artworks were analyzed and used to infer a mapping of similarity behind the different projects.`,
+      `After choosing among several key concepts, visitors are presented with a virtual walk through this map, as if it were an actual gallery space.`,
     ],
     roles : [
       'Concept direction',
@@ -111,7 +111,7 @@ export default [
       `Unsettled Music is a series of web experiments dedicated to showcasing some of the creative research happening at Qosmo Inc. on sound, graphics, and machine learning.`,
       `As the team works on various projects, some focused on music making, others closer to data visualization, many small ideas and pieces of software are often left unused.`,
       `Works shared as part of the series aren't meant to explore their subject thoroughly — they are more like snapshots of an idea, with humble ambitions.`,
-      `Exploring the outskirts of AI techniques often leads to unusual outputs - this weirdness is at the core of this project.`,
+      `Exploring the outskirts of AI techniques often leads to unusual outputs - this weirdness is at the core of the project.`,
     ],
     roles : [
       'Art direction',
@@ -164,8 +164,8 @@ export default [
       },
     ],
     texts : [
-      `Neural Beatbox is an AI-powered beatboxing machine. Using several models, it listens to the users recordings, picks drum-like snippets and generates rhythms with them.`,
-      `Started in 2018, the project has been through several iterations. Originally exhibited at the "AI: More than Human" exhibition at the Barbican Centre, it now also lives online for everyone to use.`,
+      `Neural Beatbox is an AI-powered beatboxing machine. Using several models, it listens to the users' recordings, picks drum-like snippets and generates rhythms with them.`,
+      `Started in 2018, the project has gone through several iterations. Originally exhibited at the "AI: More than Human" exhibition at the Barbican Centre, it now also lives online for everyone to use.`,
       `Neural Beatbox was also featured at NVIDIA's GTC conference in 2021.`,
     ],
     roles : [
@@ -192,7 +192,7 @@ export default [
       },
     ],
     texts : [
-      `Study For A Surrounding Entropy is an artistic project presented as part of the Media Ambition Tokyo 2019 event.`,
+      `Study For A Surrounding Entropy is an artistic project presented as part of the Media Ambition Tokyo 2019 exhibition.`,
       `The artwork is a generative audiovisual installation that listens to ambient radio waves and turns them into a sensory presence, through the use of textured sounds and organic visuals.`,
       `This project is a part of a personal interest in invisible phenomenons and the noise in the nature around us.`,
     ],
@@ -217,9 +217,9 @@ export default [
       },
     ],
     texts : [
-      `Neutone is an audio plugin that allows users to run AI models within common DAWs.`,
-      `It also functions as a platform for hosting those models - anyone is invited to submit their own models and make them available to others.`,
-      `The project aims at providing a tool that is useful to both musicians and researchers in the domain.`,
+      `Neutone is an audio plugin that allows users to run AIs models directly withing music-making programs such as Ableton, Reaper, etc.`,
+      `It also functions as a platform for hosting those models - users are invited to submit their own models and make them available to others.`,
+      `The project aims at providing an ergonomic tool that is useful to both musicians and researchers in the domain.`,
     ],
     roles : [
       'Plugin interface development',
@@ -240,10 +240,10 @@ export default [
       },
     ],
     texts : [
-      `64 Memories Of Noise is an audiovisual installation that was displayed at Anteroom in Kyoto, Japan, during summer 2022.`,
+      `64 Memories Of Noise is an audiovisual installation that was displayed at the Anteroom gallery in Kyoto, Japan, during summer 2022.`,
       `The setup plays sounds and visuals that are generated based on recordings of noise levels from the surrounding streets of the city.`,
       `This collection of audio recordings can be seen as a diary of memories of arbitrary data - it questions the nature of archives and the meaning we attach to them.`,
-      `The goal of this artwork is to let visitors observe the texture of the noise around them, rather than their content.`,
+      `The goal of this artwork is to let visitors observe the texture of the noise around them, rather than its content.`,
     ],
     roles : [
       'Art direction',

@@ -12,15 +12,56 @@
 {
 	font-size: 0.9em;
 }
-.Summary
-{
-	display: block;
-}
-.Headline::before
+.Summary_Headline::before
 {
 	content: ', ';
 }
-.Container * + *
+.Summaries,
+.Summaries > * + *
 {
-	margin-top: 35px;
+	margin-top: 40px;
+}
+@media screen and ( max-width: 900px )
+{
+	.Summaries
+	{
+		width: 90%;
+	}
+	.Summary_Line
+	{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.Summary_Headline
+	{
+		margin-left: 20px;
+		margin-top: 10px;
+		font-size: 0.8em;
+	}
+	.Summary_Headline::before
+	{
+		content: none;
+	}
+}
+@media screen and ( max-width: 600px )
+{
+	.Container
+	{
+		font-size: 0.6em;
+	}
+	.Summaries
+	{
+		width: 95%;
+	}
+	.Summary_Line
+	{
+		align-items: flex-start;
+	}
+	.Summary_Headline
+	{
+		margin-left: 5px;
+		margin-top: 5px;
+		font-size: 0.7em;
+	}
 }

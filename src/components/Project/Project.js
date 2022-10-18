@@ -25,6 +25,8 @@ export default function Project( {
         <OffsetContainer
           className={ css['Title'] }
           randomValue={ offsets[1] }
+          leftAlignOnMedium={ false }
+          leftAlignOnSmall={ true }
         >
           <h4>
             { title }
@@ -57,7 +59,8 @@ export default function Project( {
                 alt={ image.alt }
                 width={ image.largeWidth }
                 height={ image.largeHeight }
-                colors={ image.colors }
+                color1={ image.color1 }
+                color2={ image.color2 }
               />
             </li>
           ) ) }

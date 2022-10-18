@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import css from './BaseLink.module.css';
+import classnames from 'classnames';
 
 export default function BaseLink( {
+  className,
   href,
   newTab,
   text,
@@ -10,7 +12,7 @@ export default function BaseLink( {
 
   return (
     <Link href={ href }>
-      <a className={ css['Link'] } target={ target }>
+      <a className={ classnames( className, css['Link'] ) } target={ target }>
         { text }
       </a>
     </Link>

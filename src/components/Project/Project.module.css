@@ -21,9 +21,17 @@
 	max-width: 800px;
 	font-size: 1.1em;
 }
+.Texts,
+.Text
+{
+	width: 100%;
+}
 .Texts
 {
 	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .Texts > * + *
 {
@@ -31,7 +39,6 @@
 }
 .Text
 {
-	width: 100vw;
 	max-width: 600px;
 	font-size: 0.6em;
 	line-height: 1.4em;
@@ -62,4 +69,18 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+}
+@media screen and ( max-width: 900px )
+{
+	.Intro
+	{
+		width: 90%;
+	}
+}
+@media screen and ( max-width: 600px )
+{
+	.Title
+	{
+		font-size: 1em;
+	}
 }

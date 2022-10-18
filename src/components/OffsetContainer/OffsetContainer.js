@@ -8,7 +8,9 @@ export default function OffsetContainer( {
   children,
   className,
   innerClassName,
-  randomValue,
+  leftAlignOnMedium = false,
+  leftAlignOnSmall = false,
+  randomValue = 0.0,
   randomMin = -1.0,
   randomMax = 1.0,
 } ) {
@@ -22,10 +24,21 @@ export default function OffsetContainer( {
   const offset = lerp( randomValue, randomMin, randomMax, -offsetRange, offsetRange );
 
   return (
-    <div className={ classnames( css['Container'], className ) } ref={ container }>
-      <div className={ classnames( css['Inner'], innerClassName ) } ref={ content } style={{
-        left : `${ offset }px`,
-      }}>
+    <div className={ classnames( {
+      [className] : true,
+      [css['Container']] : true,
+      [css['Container-RespMedium']] : leftAlignOnMedium,
+      [css['Container-RespSmall']] : leftAlignOnSmall,
+    } ) } ref={ container }>
+      <div className={ classnames(
+        innerClassName,
+        css['Inner'],
+      ) }
+        ref={ content }
+        style={{
+          left : `${ offset }px`,
+        }}
+      >
         { children }
       </div>
     </div>

@@ -22,6 +22,8 @@ export default function BaseLayout( {
 				<OffsetContainer
 					className={ css['Header_Name'] }
 					randomValue={ titleNoiseValue }
+					leftAlignOnMedium={ false }
+					leftAlignOnSmall={ true }
 				>
           <Link href="/">
             <a>
@@ -38,6 +40,8 @@ export default function BaseLayout( {
 						css['Header_Role-1']
 					) }
 					randomValue={ roleNoiseValue1 }
+					leftAlignOnMedium={ false }
+					leftAlignOnSmall={ true }
 				>
 					<h3>
 						Creative direction,
@@ -50,6 +54,8 @@ export default function BaseLayout( {
 						css['Header_Role-2']
 					) }
 					randomValue={ roleNoiseValue2 }
+					leftAlignOnMedium={ false }
+					leftAlignOnSmall={ true }
 				>
 					<h3>
 						Interactive software

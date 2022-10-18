@@ -26,18 +26,28 @@ export default function Home() {
 
 				<ol className={ css['Summaries'] }>
 					{ projects.map( ( project, i ) => (
-						<li className={ css['Summary'] } key={ project.slug } style={{
-							transform : `rotate(${3.0 * angles[i]}deg)`,
-						}}>
-							<OffsetContainer randomValue={ offsets[i + 3] }>
-								<span>
+						<li
+							className={ css['Summary'] }
+							key={ project.slug } style={{
+								transform : `rotate(${3.0 * angles[i]}deg)`,
+							}}
+						>
+							<OffsetContainer
+								randomValue={ offsets[i + 3] }
+								className={ css['Summary_Container'] }
+								innerClassName={ css['Summary_Inner'] }
+								leftAlignOnMedium={ true }
+								leftAlignOnSmall={ true }
+							>
+								<span className={ css['Summary_Line'] }>
 									<BaseLink
+										className={ css['Summary_Link'] }
 										href={ `/projects/${ project.slug }` }
 										newTab={ false }
 										text={ project.title }
 									/>
 
-									<span className={ css['Headline'] }>
+									<span className={ css['Summary_Headline'] }>
 										{ project.headline }
 									</span>
 								</span>
