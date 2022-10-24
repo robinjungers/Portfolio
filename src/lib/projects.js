@@ -57,8 +57,8 @@ export default [
     ],
   },
   {
-    slug : 'siaf-matrix',
-    title : 'SIAF Matrix',
+    slug : 'siaf2020-matrix',
+    title : 'SIAF2020 Matrix',
     headline : 'An online exhibition space',
     images : [
       {
@@ -175,7 +175,7 @@ export default [
   },
   {
     slug : 'surrounding-entropy',
-    title : 'Study for a surrounding entropy',
+    title : 'Study For a Surrounding Entropy',
     headline : 'An art piece capturing radio waves',
     images : [
       {

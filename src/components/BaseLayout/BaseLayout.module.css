@@ -22,80 +22,46 @@
 }
 .Header_Name
 {
-	font-size: 0.9em;
-	width: 100%;
-	max-width: 400px;
+	font-size: 0.95em;
+	font-style: italic;
+	position: relative;
 }
-@media screen and ( max-width : 600px )
+.Container-Project .Header_Name::before
 {
-	.Header_Name
-	{
-		width: 90%;
-		font-size: 0.8em;
-	}
-}
-.Header_Name h1
-{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.Container-Project h1::before
-{
-  display: inline-block;
   content: '<';
-  margin-right: 0.5em;
   font-size: 0.9em;
+	position: absolute;
+	left: -1em;
+	bottom: 0.07em;
   transition-property: transform;
   transition-duration: 0.1s;
   transition-timing-function: ease;
 }
-.Container-Project h1:hover::before
+.Container-Project .Header_Name:hover::before
 {
   transform: translateX(-5px);
 }
 .Header_Role
 {
 	font-size: 1.05em;
+	text-transform: capitalize;
 }
 .Header_Role-1
 {
-	margin-top: 30px;
-	width: 100%;
-	max-width: 500px;
+	margin-top: 15px;
 }
 .Header_Role-2
 {
-	margin-top: 20px;
-	width: 100%;
-	max-width: 500px;
+	margin-top: 5px;
 }
 .Container-Project .Header_Role
 {
 	display: none;
 }
-@media screen and ( max-width : 600px )
-{
-	.Header_Role
-	{
-		font-size: 0.8em;
-	}
-	.Header_Role-1
-	{
-		margin-top: 20px;
-		width: 90%;
-	}
-	.Header_Role-2
-	{
-		margin-top: 10px;
-		width: 90%;
-	}
-}
 .Social
 {
-	margin-top: 80px;
+	margin-top: 100px;
 	font-size: 0.65em;
-	max-width: 1000px;
 }
 .Social_Link + .Social_Link::before
 {
@@ -105,11 +71,15 @@
 {
 	content: ' ';
 }
+.Email
+{
+	margin-top: 15px;
+	font-size: 0.6em;
+}
 .Footer
 {
 	font-size: 0.55em;
-	margin-top: 40px;
-	max-width: 800px;
+	margin-top: 20px;
 }
 .Footer > * + *::before
 {

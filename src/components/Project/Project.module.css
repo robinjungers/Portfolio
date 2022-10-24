@@ -17,8 +17,6 @@
 }
 .Title
 {
-	width: 100%;
-	max-width: 800px;
 	font-size: 1.1em;
 }
 .Texts,
@@ -35,13 +33,19 @@
 }
 .Texts > * + *
 {
-	margin-top: 25px;
+	margin-top: 20px;
 }
 .Text
 {
-	max-width: 600px;
+	max-width: 500px;
 	font-size: 0.6em;
 	line-height: 1.4em;
+	text-align: center;
+	border-color: hsl(0, 0%, 70%);
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 20px;
+	padding: 10px;
 }
 .Text p
 {

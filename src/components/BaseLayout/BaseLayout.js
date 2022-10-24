@@ -6,9 +6,6 @@ import Link from 'next/link';
 
 export default function BaseLayout( {
   isProject = false,
-  titleNoiseValue = 0.0,
-  roleNoiseValue1 = 0.0,
-  roleNoiseValue2 = 0.0,
   children,
 } ) {
   return (
@@ -19,48 +16,27 @@ export default function BaseLayout( {
       } ) }
     >
       <header className={ css['Header'] }>
-				<OffsetContainer
-					className={ css['Header_Name'] }
-					randomValue={ titleNoiseValue }
-					leftAlignOnMedium={ false }
-					leftAlignOnSmall={ true }
-				>
-          <Link href="/">
-            <a>
-              <h1>
-                Robin Jungers
-              </h1>
-            </a>
-          </Link>
-				</OffsetContainer>
+				<Link href="/">
+					<a>
+						<h1 className={ css['Header_Name'] }>
+							Robin Jungers
+						</h1>
+					</a>
+				</Link>
 
-				<OffsetContainer
-					className={ classnames(
-						css['Header_Role'],
-						css['Header_Role-1']
-					) }
-					randomValue={ roleNoiseValue1 }
-					leftAlignOnMedium={ false }
-					leftAlignOnSmall={ true }
-				>
-					<h3>
-						Creative direction,
-					</h3>
-				</OffsetContainer>
+				<h3 className={ classnames(
+					css['Header_Role'],
+					css['Header_Role-1']
+				) }>
+					Creative direction,
+				</h3>
 				
-				<OffsetContainer
-					className={ classnames(
-						css['Header_Role'],
-						css['Header_Role-2']
-					) }
-					randomValue={ roleNoiseValue2 }
-					leftAlignOnMedium={ false }
-					leftAlignOnSmall={ true }
-				>
-					<h3>
-						Interactive software
-					</h3>
-				</OffsetContainer>
+				<h3 className={ classnames(
+					css['Header_Role'],
+					css['Header_Role-2']
+				) }>
+					Interactive software
+				</h3>
 			</header>
 
       <main className={ css['Main'] }>
@@ -69,7 +45,7 @@ export default function BaseLayout( {
 
       <div className={ css['Social'] }>
 				<span>
-					Follow me on
+					follow me on
 				</span>
 				
 				<span className={ css['Social_Link'] }>
@@ -95,6 +71,10 @@ export default function BaseLayout( {
             text="Are.na"
           />
 				</span>
+			</div>
+
+			<div className={ css['Email'] }>
+				email me at jungersrobin(at)gmail(dot)com
 			</div>
 
 			<footer className={ css['Footer'] }>

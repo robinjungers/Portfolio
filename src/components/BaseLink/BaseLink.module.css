@@ -1,9 +1,9 @@
 .Link
 {
-	border-color: var(--color-medium);
-	border-width: 1px;
-	border-style: solid;
-	padding: 0 0.3em;
+	border-bottom-color: var(--color-medium);
+	border-bottom-width: 0px;
+	border-bottom-style: solid;
+	/* padding: 0 0.1em 0.1em; */
 	transition-property: border-color;
 	transition-timing-function: ease;
 	transition-duration: 0.1s;
@@ -12,5 +12,5 @@
 .Link:hover
 {
 	border-color: hsla(0, 0%, 70%, 1.0);
-	transform: scale(1, -1);
+	transform: scale(-1, 1);
 }

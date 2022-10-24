@@ -1,3 +1,5 @@
+@import url( 'https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap' );
+
 :root
 {
 	--color-light: hsla(0, 0%, 85%, 1.0);
@@ -8,10 +10,9 @@ body
 {
 	color: var(--color-dark);
 	background-color: var(--color-light);
-	font-family: 'Red Hat Mono', monospace;
+	font-family: 'Xanh Mono', monospace;
 	font-weight: 300;
 	font-size: 30px;
 	font-style: normal;
-	text-transform: uppercase;
 	letter-spacing: -0.01em;
 }

@@ -3,22 +3,22 @@ import classnames from 'classnames';
 import projects from '@/lib/projects';
 import React from 'react';
 import OffsetContainer from '../OffsetContainer'
-import Link from 'next/link';
 import useNoiseValues from '@/hooks/useNoiseValues';
 import BaseLayout from '../BaseLayout';
 import BaseLink from '../BaseLink';
+import useWindowSize from '@/hooks/useWindowSize';
+
+function makeTransform( offset, angle ) {
+	return `translateX(${ offset }px) rotateZ(${ angle }deg)`;
+}
 
 export default function Home() {
-	const offsets = useNoiseValues( projects.length + 3 );
-	const angles = useNoiseValues( projects.length, 0.2 );
+	const width = useWindowSize()[0];
+	const randomOffsets = useNoiseValues( projects.length, 0.3 );
+	const randomAngles = useNoiseValues( projects.length, 0.4 );
 
 	return (
-		<BaseLayout
-			isProject={ false }
-			titleNoiseValue={ offsets[0] }
-			roleNoiseValue1={ offsets[1] }
-			roleNoiseValue2={ offsets[2] }
-		>
+		<BaseLayout isProject={ false }>
 			<div className={ css['Container'] }>
 				<h6 className={ css['Intro'] }>
 					Featured projects:
@@ -29,29 +29,30 @@ export default function Home() {
 						<li
 							className={ css['Summary'] }
 							key={ project.slug } style={{
-								transform : `rotate(${3.0 * angles[i]}deg)`,
+								transform : makeTransform(
+									randomOffsets[i] * 0.1 * width,
+									randomAngles[i] * 3.0,
+								),
 							}}
 						>
-							<OffsetContainer
-								randomValue={ offsets[i + 3] }
-								className={ css['Summary_Container'] }
-								innerClassName={ css['Summary_Inner'] }
-								leftAlignOnMedium={ true }
-								leftAlignOnSmall={ true }
-							>
-								<span className={ css['Summary_Line'] }>
-									<BaseLink
-										className={ css['Summary_Link'] }
-										href={ `/projects/${ project.slug }` }
-										newTab={ false }
-										text={ project.title }
-									/>
+							<span className={ css['Summary_Divider'] } />
+							<span className={ css['Summary_Line'] }>
+								<BaseLink
+									className={ css['Summary_Link'] }
+									href={ `/projects/${ project.slug }` }
+									newTab={ false }
+									text={ project.title }
+								/>
 
-									<span className={ css['Summary_Headline'] }>
-										{ project.headline }
-									</span>
+								<span className={ css['Summary_Headline'] }>
+									{ project.headline }
 								</span>
-							</OffsetContainer>
+
+								<img
+									className={ css['Summary_Arrow'] }
+									src="/icons/arrow5.svg"
+								/>
+							</span>
 						</li>
 					) ) }
 				</ol>

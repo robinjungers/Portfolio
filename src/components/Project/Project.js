@@ -13,39 +13,22 @@ export default function Project( {
   texts,
   roles,
 } ) {
-  const offsets = useNoiseValues( texts.length + 2, 1.0 );
-  const angles = useNoiseValues( texts.length, 1.0 );
+  const angles = useNoiseValues( texts.length, 0.1 );
 
   return (
-    <BaseLayout
-      isProject={ true }
-      titleNoiseValue={ offsets[0] }
-    >
+    <BaseLayout isProject={ true }>
       <div className={ css['Intro'] }>
-        <OffsetContainer
-          className={ css['Title'] }
-          randomValue={ offsets[1] }
-          leftAlignOnMedium={ false }
-          leftAlignOnSmall={ true }
-        >
-          <h4>
-            { title }
-          </h4>
-        </OffsetContainer>
+        <h4 className={ css['Title'] }>
+          { title }
+        </h4>
 
         <div className={ css['Texts'] }>
           { texts.map( ( text, i ) => (
-            <OffsetContainer
-              className={ css['Text'] }
-              randomValue={ offsets[i + 2] }
-              key={ i }
-            >
-              <p style={{
-                transform : `rotate(${3.0 * angles[i]}deg)`,
-              }}>
-                { text }
-              </p>
-            </OffsetContainer>
+            <p className={ css['Text'] } style={{
+              transform : `rotate(${3.0 * angles[i]}deg)`,
+            }}>
+              { text }
+            </p>
           ) ) }
         </div>
       </div>
