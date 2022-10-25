@@ -79,7 +79,7 @@ export default [
       },
     ],
     texts : [
-      `Due the pandeminc in 2020, the Sapporo International Art Festival (SIAF) was held online. For the occasion, we explored ways of conveying the original spatial context of the exhibition.`,
+      `Due the pandemic in 2020, the Sapporo International Art Festival (SIAF) was held online. For the occasion, we explored ways of conveying the original spatial context of the exhibition.`,
       `Using natural language processing techniques, the descriptions of the artworks were analyzed and used to infer a mapping of similarity behind the different projects.`,
       `After choosing among several key concepts, visitors are presented with a virtual walk through this map, as if it were an actual gallery space.`,
     ],

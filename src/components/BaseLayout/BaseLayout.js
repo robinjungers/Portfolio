@@ -1,7 +1,5 @@
-import OffsetContainer from '../OffsetContainer';
 import css from './BaseLayout.module.css';
 import classnames from 'classnames';
-import BaseLink from '../BaseLink';
 import Link from 'next/link';
 
 export default function BaseLayout( {
@@ -49,27 +47,21 @@ export default function BaseLayout( {
 				</span>
 				
 				<span className={ css['Social_Link'] }>
-          <BaseLink
-            href="https://www.instagram.com/robinjungers/"
-            newTab={ true }
-            text="IG"
-          />
+					<a href="https://www.instagram.com/robinjungers/" target="_blank">
+						IG
+					</a>
 				</span>
 				
 				<span className={ css['Social_Link'] }>
-          <BaseLink
-            href="https://twitter.com/robinjungers"
-            newTab={ true }
-            text="TW"
-          />
+					<a href="https://twitter.com/robinjungers" target="_blank" >
+						TW
+					</a>
 				</span>
-
+				
 				<span className={ css['Social_Link'] }>
-          <BaseLink
-            href="https://www.are.na/robin-jungers/"
-            newTab={ true }
-            text="Are.na"
-          />
+					<a href="https://www.are.na/robin-jungers/" target="_blank">
+						Are.na
+					</a>
 				</span>
 			</div>
 

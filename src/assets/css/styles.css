@@ -1,9 +1,7 @@
-@import url( 'https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap' );
-
 :root
 {
 	--color-light: hsla(0, 0%, 85%, 1.0);
-	--color-medium: hsla(0, 0%, 60%, 1.0);
+	--color-medium: hsla(0, 0%, 75%, 1.0);
 	--color-dark: hsla(0, 0%, 15%, 1.0);
 }
 body

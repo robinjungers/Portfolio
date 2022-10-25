@@ -28,18 +28,18 @@
 }
 .Container-Project .Header_Name::before
 {
-  content: '<';
-  font-size: 0.9em;
+	content: '';
+  display: block;
+	width: 0.8em;
+	height: 0.8em;
+	background-image: url(/icons/arrow5.svg);
+	background-position: center;
+	background-size: contain;
+	transform: rotate(-90deg);
 	position: absolute;
-	left: -1em;
-	bottom: 0.07em;
-  transition-property: transform;
-  transition-duration: 0.1s;
-  transition-timing-function: ease;
-}
-.Container-Project .Header_Name:hover::before
-{
-  transform: translateX(-5px);
+	left: -1.2em;
+	bottom: 0.18em;
+	opacity: 0.8;
 }
 .Header_Role
 {
@@ -61,11 +61,34 @@
 .Social
 {
 	margin-top: 100px;
-	font-size: 0.65em;
+	font-size: 0.75em;
+}
+.Social_Link a
+{
+	display: inline-block;
+}
+.Social_Link a::after
+{
+	content: '';
+	display: inline-block;
+	width: 0.7em;
+	height: 0.7em;
+	background-image: url(/icons/arrow5.svg);
+	background-position: center;
+	background-size: contain;
+	transform: rotate(45deg);
+	margin-left: 0.1em;
+	position: relative;
+	top: 0.1em;
+	opacity: 0.8;
+}
+.Social_Link:hover a
+{
+	transform: scale(-1,1);
 }
 .Social_Link + .Social_Link::before
 {
-	content: ', ';
+	content: ' or ';
 }
 .Social_Link::before
 {
@@ -74,7 +97,7 @@
 .Email
 {
 	margin-top: 15px;
-	font-size: 0.6em;
+	font-size: 0.65em;
 }
 .Footer
 {
@@ -97,6 +120,10 @@
 	.Social
 	{
 		font-size: 0.6em;
+	}
+	.Email
+	{
+		font-size: 0.55em;
 	}
 	.Footer
 	{

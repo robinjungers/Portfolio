@@ -26,24 +26,12 @@ export default function ProjectImage( {
       <div className={ css['Frame'] } style={{
         backgroundColor : color1,
       }}>
-        <div className={ css['Toolbar'] } style={{
-          backgroundColor : color2,
-        }}>
-          <div className={ css['Action'] } />
-          <div className={ css['Action'] } />
-          <div className={ css['Action'] } />
-        </div>
-
         <img
           className={ css['Image'] }
           alt={ alt }
           src={ url }
           width={ width }
           height={ height }
-          style={{
-            width : imageWidth,
-            height : imageHeight,
-          }}
         />
       </div>
     </div>

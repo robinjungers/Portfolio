@@ -77,7 +77,7 @@ async function preparePalette( filename ) {
       chroma.contrast( a.color, topColor ) ) );
   const diffColor1Raw = chroma( diffColors[0].color );
   const diffColor1 = diffColor1Raw
-    .set( 'hsl.s', Math.min( diffColor1Raw.get( 'hsl.s' ), 0.05 ) )
+    .set( 'hsl.s', Math.min( diffColor1Raw.get( 'hsl.s' ), 0.10 ) )
     .set( 'hsl.l', Math.max( diffColor1Raw.get( 'hsl.l' ), 0.75 ) );
   const diffColor2Raw = chroma( diffColors[1].color );
   const diffColor2 = diffColor2Raw
@@ -126,7 +126,7 @@ export async function getStaticProps( { params } ) {
       slug : project.slug,
       title : project.title,
       headline : project.headline,
-      texts : project.texts,
+      text : project.texts.join( ' ' ),
       roles : project.roles,
       images,
     },
