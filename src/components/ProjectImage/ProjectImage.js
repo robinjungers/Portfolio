@@ -1,6 +1,7 @@
 import css from './ProjectImage.module.css';
 import React from 'react';
-import chroma from 'chroma-js';
+import classnames from 'classnames';
+import useScrollPosition from '@/hooks/useScrollPosition';
 
 export default function ProjectImage( {
   url,
@@ -10,29 +11,45 @@ export default function ProjectImage( {
   color1,
   color2,
 } ) {
-  let imageWidth;
-  let imageHeight;
+  const image = React.useRef( null );
 
-  if ( width / height > 1.0 ) {
-    imageWidth = null;
-    imageHeight = 'auto';
-  } else {
-    imageWidth = 'auto';
-    imageHeight = null;
-  }
+  const [isLoaded, setIsLoaded] = React.useState( false );
+  const [isVisible, setIsVisible] = React.useState( false );
+
+  React.useEffect( () => {
+    setIsLoaded( image.current.complete );
+  }, [] );
+
+  useScrollPosition( () => {
+    const rect = image.current.getBoundingClientRect();
+
+    setIsVisible(
+      rect.top < 0.75 * window.innerHeight &&
+      rect.bottom > 0.1 * window.innerHeight
+    );
+  }, [] );
 
   return (
     <div className={ css['Container'] }>
       <div className={ css['Frame'] } style={{
         backgroundColor : color1,
       }}>
-        <img
-          className={ css['Image'] }
-          alt={ alt }
-          src={ url }
-          width={ width }
-          height={ height }
-        />
+        <div className={ css['Inner'] } style={{
+          backgroundColor : color2,
+        }}>
+          <img
+            className={ classnames( {
+              [css['Image']] : true,
+              [css['Image-Active']] : isLoaded && isVisible,
+            } ) }
+            ref={ image }
+            alt={ alt }
+            src={ url }
+            width={ width }
+            height={ height }
+            onLoad={ () => setIsLoaded( true ) }
+          />
+        </div>
       </div>
     </div>
   );

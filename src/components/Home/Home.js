@@ -1,5 +1,4 @@
 import css from './Home.module.css';
-import projects from '@/lib/projects';
 import React from 'react';
 import useNoiseValues from '@/hooks/useNoiseValues';
 import BaseLayout from '../BaseLayout';
@@ -10,14 +9,18 @@ function makeTransform( offset, angle ) {
 	return `translateX(${ offset }px) rotateZ(${ angle }deg)`;
 }
 
-export default function Home() {
+export default function Home( { projects } ) {
 	const maxWidth = useWindowSize()[0]; 
 	const maxSpan = maxWidth > 900 ? maxWidth * 0.1 : 0.0;
 	const randomOffsets = useNoiseValues( projects.length, 0.3 );
 	const randomAngles = useNoiseValues( projects.length, 0.4 );
 
 	return (
-		<BaseLayout isProject={ false }>
+		<BaseLayout
+			isProject={ false }
+			pageTitle="Creative direction, Interactive software"
+			pageDescription="Robin Jungers is a software engineer with a focus on art direction and interactive systems"
+		>
 			<div className={ css['Container'] }>
 				<h6 className={ css['Intro'] }>
 					Featured projects:

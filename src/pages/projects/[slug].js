@@ -2,7 +2,7 @@ import getConfig from 'next/config'
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
-import projects from '@/lib/projects';
+import { projects } from '@/lib/projects.toml';
 import kmeans from 'ml-kmeans';
 import chroma from 'chroma-js';
 
@@ -86,7 +86,7 @@ async function preparePalette( filename ) {
 	
 	return {
     color1 : diffColor1.css(),
-    color2 : diffColor2.css(),
+    color2 : topColor.css(),
   };
 }
 
@@ -123,11 +123,7 @@ export async function getStaticProps( { params } ) {
 
   return {
     props : {
-      slug : project.slug,
-      title : project.title,
-      headline : project.headline,
-      text : project.texts.join( ' ' ),
-      roles : project.roles,
+      ...project,
       images,
     },
   }

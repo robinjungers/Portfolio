@@ -1,10 +1,13 @@
 import css from './BaseLayout.module.css';
 import classnames from 'classnames';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function BaseLayout( {
   isProject = false,
   children,
+	pageTitle,
+	pageDescription,
 } ) {
   return (
     <div
@@ -13,6 +16,37 @@ export default function BaseLayout( {
         [css['Container-Project']] : isProject,
       } ) }
     >
+			<Head>
+				<title>
+					{ `Robin Jungers - ${ pageTitle }` }
+				</title>
+				<meta
+					name="description"
+					content={ pageDescription }
+					key="description"
+				/>
+				<meta
+					property="og:title"
+					content={ pageTitle }
+					key="og:title"
+				/>
+				<meta
+					property="og:description"
+					content={ pageDescription }
+					key="og:description"
+				/>
+				<meta
+					name="twitter:title"
+					content={ pageTitle }
+					key="twitter:title"
+				/>
+				<meta
+					name="twitter:description"
+					content={ pageDescription }
+					key="twitter:description"
+				/>
+			</Head>
+
       <header className={ css['Header'] }>
 				<Link href="/">
 					<a>

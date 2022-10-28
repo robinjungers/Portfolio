@@ -15,17 +15,14 @@
 {
   width: 60vw;
   height: auto;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
 }
-.Action
+.Image-Active
 {
-  width: 10px;
-  height: 10px;
-  background-color: hsl(0, 0%, 80%);
-  border-radius: 50%;
-}
-.Action:hover
-{
-  background-color: hsl(0, 0%, 70%);
+  opacity: 1;
 }
 @media screen and ( max-width: 900px )
 {

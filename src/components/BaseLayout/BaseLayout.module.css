@@ -32,7 +32,7 @@
   display: block;
 	width: 0.8em;
 	height: 0.8em;
-	background-image: url(/icons/arrow5.svg);
+	background-image: url(/icons/arrow.svg);
 	background-position: center;
 	background-size: contain;
 	transform: rotate(-90deg);
@@ -73,7 +73,7 @@
 	display: inline-block;
 	width: 0.7em;
 	height: 0.7em;
-	background-image: url(/icons/arrow5.svg);
+	background-image: url(/icons/arrow.svg);
 	background-position: center;
 	background-size: contain;
 	transform: rotate(45deg);

@@ -10,6 +10,7 @@
   "author": "Robin Jungers",
   "license": "ISC",
   "dependencies": {
+    "@lcdev/toml-loader": "^1.1.0",
     "chroma-js": "^2.4.2",
     "classnames": "^2.3.2",
     "ml-kmeans": "^5.0.0",

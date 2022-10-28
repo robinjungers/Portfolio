@@ -1,16 +1,13 @@
 import React from 'react';
 
 export default function useElementSize( ref ) {
-  const [size, setSize] = React.useState( [0.0, 0.0] );
+  const [rect, setRect] = React.useState( new DOMRect() );
 
   React.useEffect( () => {
     const observer = new ResizeObserver( () => {
       const rect = ref.current.getBoundingClientRect();
 
-      setSize( [
-        rect.width,
-        rect.height,
-      ] );
+      setRect( rect );
     } );
 
     observer.observe( ref.current );
@@ -19,5 +16,5 @@ export default function useElementSize( ref ) {
     };
   }, [] );
 
-  return size;
+  return rect;
 }

@@ -25,6 +25,7 @@ export default function Project( {
   images,
   text,
   roles,
+  links,
 } ) {
   const maxWidth = useWindowSize()[0];
   const maxSpan = maxWidth > 900 ? 0.05 * maxWidth : 0.0;
@@ -56,7 +57,11 @@ export default function Project( {
   const randomAngles = useNoiseValues( lines.length, 0.1 );
 
   return (
-    <BaseLayout isProject={ true }>
+    <BaseLayout
+      isProject={ true }
+      pageTitle={ title }
+			pageDescription={ headline }
+    >
       <div className={ css['Intro'] }>
         <h4 className={ css['Title'] }>
           { title }
@@ -77,6 +82,21 @@ export default function Project( {
             </span>
           ) ) }
         </p>
+
+        { links && (
+          <div className={ css['Links'] }>
+            { links.map( ( link, i ) => (
+              <a
+                className={ css['Link'] }
+                key={ i }
+                href={ link.url }
+                target="_blank"
+              >
+                { link.title }
+              </a>
+            ) ) }
+          </div>
+        ) }
       </div>
 
       <div className={ css['Container'] }>
