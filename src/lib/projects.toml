@@ -231,7 +231,8 @@ headline = "An audio plugin and platform for AI models"
 text = """
 Neutone is an audio plugin that allows users to run AIs models directly withing music-making programs such as Ableton, Reaper, etc.
 It also functions as a platform for hosting those models - users are invited to submit their own models and make them available to others.
-The project aims at providing an ergonomic tool that is useful to both musicians and researchers in the domain."""
+The project aims at providing an ergonomic tool that is useful to both musicians and researchers in the domain.
+The interface of Neutone was built using web technologies in order to implement a modern, custom design."""
 roles = [
   "Plugin interface development"
 ]
