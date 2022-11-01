@@ -4,10 +4,7 @@ import useNoiseValues from '@/hooks/useNoiseValues';
 import BaseLayout from '../BaseLayout';
 import useWindowSize from '@/hooks/useWindowSize';
 import Link from 'next/link';
-
-function makeTransform( offset, angle ) {
-	return `translateX(${ offset }px) rotateZ(${ angle }deg)`;
-}
+import { makeCSSTransform } from '@/lib/utils';
 
 export default function Home( { projects } ) {
 	const maxWidth = useWindowSize()[0]; 
@@ -31,7 +28,7 @@ export default function Home( { projects } ) {
 						<li
 							className={ css['Summary'] }
 							key={ project.slug } style={{
-								transform : makeTransform(
+								transform : makeCSSTransform(
 									randomOffsets[i] * maxSpan,
 									randomAngles[i] * 3.0,
 								),

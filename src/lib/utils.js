@@ -33,3 +33,7 @@ export function randomTrue( p ) {
 export function times( n, fn ) {
 	return Array.from( { length : n }, ( x, i ) => fn( i ) );
 }
+
+export function makeCSSTransform( offset, angle ) {
+	return `translateX(${ offset }px) rotateZ(${ angle }deg)`;
+}

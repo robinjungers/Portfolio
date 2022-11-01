@@ -20,24 +20,6 @@
 	font-size: 1.1em;
 	text-align: center;
 }
-.Lines
-{
-	margin-top: 100px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.Lines > * + *
-{
-	margin-top: 5px;
-}
-.Line
-{
-	font-size: 0.6em;
-	line-height: 1.4em;
-	text-align: center;
-	text-transform: lowercase;
-}
 .Links
 {
 	margin-top: 80px;
@@ -123,10 +105,6 @@
 	.Title
 	{
 		font-size: 1em;
-	}
-	.Line
-	{
-		font-size: 0.45em;
 	}
 	.Links
 	{
