@@ -8,4 +8,4 @@ export function getStaticProps() {
   };
 }
 
-export { default } from '@/components/Home';
+export { default } from '@/components/HomePage';

@@ -1,9 +1,11 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
-export default function useWindowSize() {
-  const [size, setSize] = React.useState( [0, 0] );
+type WindowSizeResult = [number, number];
 
-  React.useEffect( () => {
+export default function useWindowSize() : WindowSizeResult {
+  const [size, setSize] = useState<WindowSizeResult>( [0, 0] );
+
+  useEffect( () => {
     const onResize = () => {
       setSize( [
         window.innerWidth,

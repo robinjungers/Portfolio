@@ -1,10 +1,10 @@
 import useNoiseValues from '@/hooks/useNoiseValues';
 import useWindowSize from '@/hooks/useWindowSize';
 import { makeCSSTransform } from '@/lib/utils';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import css from './ProjectText.module.css';
 
-function countWordsForChars( words, n ) {
+function countWordsForChars( words : string[], n : number ) : number {
   let i = 0;
   let m = 0;
 
@@ -19,7 +19,7 @@ function countWordsForChars( words, n ) {
   return i;
 }
 
-function divideTextIntoEvenLines( text, charsPerLine ) {
+function divideTextIntoEvenLines( text : string, charsPerLine : number ) : string[] {
   const words = text.split( ' ' );
   const lines = [];
 
@@ -38,7 +38,11 @@ function divideTextIntoEvenLines( text, charsPerLine ) {
   return lines;
 }
 
-export default function ProjectText( { text } ) {
+export type ProjectTextProps = {
+  text : string;
+}
+
+export default function ProjectText( props : ProjectTextProps ) : ReactElement {
   const maxWidth = useWindowSize()[0];
   const maxSpan = maxWidth > 900 ? 0.05 * maxWidth : 0.0;
 
@@ -47,9 +51,9 @@ export default function ProjectText( { text } ) {
       maxWidth > 900 ? 60 :
       maxWidth > 600 ? 50 : 40;
     
-    return divideTextIntoEvenLines( text, charsPerLine );
+    return divideTextIntoEvenLines( props.text, charsPerLine );
   }, [
-    text,
+    props.text,
     maxWidth,
   ] );
 

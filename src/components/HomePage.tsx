@@ -1,16 +1,21 @@
-import css from './Home.module.css';
-import React from 'react';
+import css from './HomePage.module.css';
+import React, { ReactElement } from 'react';
 import useNoiseValues from '@/hooks/useNoiseValues';
-import BaseLayout from '../BaseLayout';
 import useWindowSize from '@/hooks/useWindowSize';
 import Link from 'next/link';
 import { makeCSSTransform } from '@/lib/utils';
+import { Project } from '@/interfaces';
+import BaseLayout from './BaseLayout';
 
-export default function Home( { projects } ) {
+export type HomePageProps = {
+	projects : Project[];
+}
+
+export default function HomePage( props : HomePageProps ) : ReactElement {
 	const maxWidth = useWindowSize()[0]; 
 	const maxSpan = maxWidth > 900 ? maxWidth * 0.1 : 0.0;
-	const randomOffsets = useNoiseValues( projects.length, 0.3 );
-	const randomAngles = useNoiseValues( projects.length, 0.4 );
+	const randomOffsets = useNoiseValues( props.projects.length, 0.3 );
+	const randomAngles = useNoiseValues( props.projects.length, 0.4 );
 
 	return (
 		<BaseLayout
@@ -24,7 +29,7 @@ export default function Home( { projects } ) {
 				</h6>
 
 				<ol className={ css['Summaries'] }>
-					{ projects.map( ( project, i ) => (
+					{ props.projects.map( ( project, i ) => (
 						<li
 							className={ css['Summary'] }
 							key={ project.slug } style={{

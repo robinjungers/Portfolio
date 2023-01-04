@@ -1,9 +1,10 @@
-import React from 'react';
+import { RefObject, useEffect, useState } from "react";
 
-export default function useElementSize( ref ) {
-  const [rect, setRect] = React.useState( new DOMRect() );
 
-  React.useEffect( () => {
+export default function useElementRect( ref : RefObject<HTMLElement> ) {
+  const [rect, setRect] = useState( new DOMRect() );
+
+  useEffect( () => {
     const observer = new ResizeObserver( () => {
       const rect = ref.current.getBoundingClientRect();
 

@@ -2,47 +2,50 @@ import css from './BaseLayout.module.css';
 import classnames from 'classnames';
 import Link from 'next/link';
 import Head from 'next/head';
+import { ReactElement, ReactNode } from 'react';
 
-export default function BaseLayout( {
-  isProject = false,
-  children,
-	pageTitle,
-	pageDescription,
-} ) {
+export type BaseLayoutProps = {
+	isProject : boolean;
+  children : ReactNode;
+	pageTitle : string;
+	pageDescription : string;
+}
+
+export default function BaseLayout( props : BaseLayoutProps ) : ReactElement {
   return (
     <div
       className={ classnames( {
         [css['Container']] : true,
-        [css['Container-Project']] : isProject,
+        [css['Container-Project']] : props.isProject ?? false,
       } ) }
     >
 			<Head>
 				<title>
-					{ `Robin Jungers - ${ pageTitle }` }
+					{ `Robin Jungers - ${ props.pageTitle }` }
 				</title>
 				<meta
 					name="description"
-					content={ pageDescription }
+					content={ props.pageDescription }
 					key="description"
 				/>
 				<meta
 					property="og:title"
-					content={ pageTitle }
+					content={ props.pageTitle }
 					key="og:title"
 				/>
 				<meta
 					property="og:description"
-					content={ pageDescription }
+					content={ props.pageDescription }
 					key="og:description"
 				/>
 				<meta
 					name="twitter:title"
-					content={ pageTitle }
+					content={ props.pageTitle }
 					key="twitter:title"
 				/>
 				<meta
 					name="twitter:description"
-					content={ pageDescription }
+					content={ props.pageDescription }
 					key="twitter:description"
 				/>
 			</Head>
@@ -72,7 +75,7 @@ export default function BaseLayout( {
 			</header>
 
       <main className={ css['Main'] }>
-        { children }
+        { props.children }
       </main>
 
       <div className={ css['Social'] }>
@@ -109,7 +112,7 @@ export default function BaseLayout( {
 				</span>
 
 				<span className={ css['Footer_Year'] }>
-					2022
+					2023
 				</span>
 
 				<span className={ css['Footer_Rights'] }>

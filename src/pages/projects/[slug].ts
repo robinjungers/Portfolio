@@ -1,22 +1,41 @@
 import getConfig from 'next/config'
 import fs from 'fs';
 import path from 'path';
-import sharp from 'sharp';
-import { projects } from '@/lib/projects.toml';
+import sharp, { Metadata, OutputInfo } from 'sharp';
 import kmeans from 'ml-kmeans';
 import chroma from 'chroma-js';
+import { Project, ProjectImage } from '@/interfaces';
+import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from 'next';
+import { ProjectPageProps } from '@/components/ProjectPage';
 
-async function fileExists( path ) {
+async function fileExists( path : string ) : Promise<boolean> {
 	try {
     await fs.promises.access( path );
 
-    return true
+    return true;
   } catch {
-    return false
+    return false;
   }
 }
 
-async function prepareImage( filename, size ) {
+type BaseImage = {
+  url : string;
+  width : number;
+  height : number;
+}
+
+type BasePalette = {
+  color1 : string;
+  color2 : string;
+};
+
+type ProjectPageSlug = {
+  slug : string;
+}
+
+const projects = require( '@/lib/projects.toml' ).projects as any[];
+
+async function prepareImage( filename : string, size : number ) : Promise<BaseImage> {
   const sourceDir = path.join( getConfig().serverRuntimeConfig.dirname, 'public/images' )
   const sourcePath = path.join( sourceDir, filename );
   const sourceBasename = path.basename( filename, path.extname( filename ) );
@@ -25,16 +44,18 @@ async function prepareImage( filename, size ) {
   const targetExists = await fileExists( targetPath );
   const targetUrl = path.join( '/images', targetName );
 
-  let info;
+  let info : Metadata | OutputInfo;
 
   if ( targetExists ) {
-    info = await sharp( targetPath ).metadata()
+    info = await sharp( targetPath ).metadata();
   } else {
-    info = await new Promise( ( resolve, reject ) => {
+    info = await new Promise<OutputInfo>( ( resolve, reject ) => {
       sharp( sourcePath )
         .resize( size )
         .toFile( targetPath, ( error, info ) =>
-          error ? reject( error ) : resolve( info ) );
+          ( !!error )
+            ? reject( error )
+            : resolve( info ) );
     } );
   }
 
@@ -45,8 +66,8 @@ async function prepareImage( filename, size ) {
   };
 }
 
-async function preparePalette( filename ) {
-  const sourceDir = path.join( getConfig().serverRuntimeConfig.dirname, 'public/images' )
+async function preparePalette( filename ) : Promise<BasePalette> {
+  const sourceDir = path.join( getConfig().serverRuntimeConfig.dirname, 'public/images' );
   const sourcePath = path.join( sourceDir, filename );
   const buffer = await sharp( sourcePath )
     .resize( 500 )
@@ -54,7 +75,7 @@ async function preparePalette( filename ) {
     .raw()
     .toBuffer();
   const array = new Uint8Array( buffer );
-  const pixels = [];
+  const pixels = [] as number[][];
 
   for ( let i = 0; i < array.length; i += 3 ) {
     pixels.push( [
@@ -79,10 +100,6 @@ async function preparePalette( filename ) {
   const diffColor1 = diffColor1Raw
     .set( 'hsl.s', Math.min( diffColor1Raw.get( 'hsl.s' ), 0.10 ) )
     .set( 'hsl.l', Math.max( diffColor1Raw.get( 'hsl.l' ), 0.75 ) );
-  const diffColor2Raw = chroma( diffColors[1].color );
-  const diffColor2 = diffColor2Raw
-    .set( 'hsl.s', Math.min( diffColor2Raw.get( 'hsl.s' ), 0.10 ) )
-    .set( 'hsl.l', Math.min( diffColor2Raw.get( 'hsl.l' ), 0.25 ) );
 	
 	return {
     color1 : diffColor1.css(),
@@ -90,7 +107,7 @@ async function preparePalette( filename ) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths() : Promise<GetStaticPathsResult<ProjectPageSlug>> {
   return {
     fallback : false,
     paths : projects.map( project => ( {
@@ -101,8 +118,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps( { params } ) {
-  const project = projects.find( project => project.slug === params.slug );
+export async function getStaticProps( ctx : GetStaticPropsContext ) : Promise<GetStaticPropsResult<ProjectPageProps>> {
+  const project = projects.find( project => project.slug === ctx.params.slug );
   const images = await Promise.all( project.images.map( async image => {
     const largeInfo = await prepareImage( image.path, 2000 );
     const smallInfo = await prepareImage( image.path, 64 );
@@ -123,10 +140,12 @@ export async function getStaticProps( { params } ) {
 
   return {
     props : {
-      ...project,
-      images,
+      project : {
+        ...( project as Project ),
+        images : images as ProjectImage[],
+      },
     },
-  }
+  };
 }
 
-export { default } from '@/components/Project';
+export { default } from '@/components/ProjectPage';
