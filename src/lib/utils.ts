@@ -37,3 +37,7 @@ export function times<T>( n : number, fn : ( i : number ) => T ) : T[] {
 export function makeCSSTransform( offset : number, angle : number ) : string {
 	return `translateX(${ offset }px) rotateZ(${ angle }deg)`;
 }
+
+export function wait( duration : number ) : Promise<void> {
+	return new Promise( resolve => setTimeout( resolve, duration ) );
+}

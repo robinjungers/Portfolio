@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default function useScrollPosition( onScroll, deps ) {
+type ScrollPositionCallback = ( x : number, y : number ) => void;
+
+export default function useScrollPosition( onScroll : ScrollPositionCallback, deps : any[] ) {
   React.useEffect( () => {
     const onScroll_ = () => {
       const y = document.documentElement.scrollTop;

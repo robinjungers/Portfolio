@@ -1,0 +1,53 @@
+.Container
+{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.Subtitle
+{
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100vw;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20px;
+  text-transform: lowercase;
+  color: hsl(0, 0%, 80%);
+  padding: 0 5vw;
+}
+.Subtitle span
+{
+  background-color: hsl(0, 0%, 5%);
+  line-height: 1.5em;
+}
+.Quality
+{
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: monospace;
+  font-size: 16px;
+  text-transform: lowercase;
+  color: hsl(0, 0%, 80%);
+  padding: 2px 5px;
+  border-radius: 2px;
+  background-color: hsla(0, 0%, 5%, 0.2);
+}
+.Quality:hover
+{
+  background-color: hsla(0, 0%, 5%, 0.7);
+}
+.Quality-High
+{
+  background-color: hsla(0, 0%, 5%, 0.5);
+}
+@media (max-width: 900px)
+{
+  .Subtitle
+  {
+    font-size: 16px;
+  }  
+}

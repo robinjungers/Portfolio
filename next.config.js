@@ -6,7 +6,12 @@ module.exports = {
   webpack( config ) {
     config.module.rules.push( {
       test : /\.toml$/,
-      use : { loader : '@lcdev/toml-loader' },
+      use : '@lcdev/toml-loader',
+    } );
+
+    config.module.rules.push( {
+      test : /\.glsl$/,
+      type : 'asset/source',
     } );
 
     return config;
