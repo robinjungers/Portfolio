@@ -5,6 +5,7 @@ import { ReactElement, useState } from "react";
 import useDynamicInterval from '@/hooks/useDynamicInterval';
 import useToggle from '@/hooks/useToggle';
 import classNames from 'classnames';
+import HorizonInfo from './HorizonInfo';
 
 const HorizonCanvasNoSSR = dynamic( () => import( './HorizonCanvas' ), {
   ssr : false,
@@ -13,7 +14,8 @@ const HorizonCanvasNoSSR = dynamic( () => import( './HorizonCanvas' ), {
 const subtitles = require( 'val-loader!./subtitles/all.eval.cjs' ) as string[];
 
 export default function HorizonPage() : ReactElement {
-  const [highQuality, toggleHighQuality] = useToggle( false );
+  const [highQuality, setHighQuality] = useState<boolean>( false );
+  const [openInfo, setOpenInfo] = useState<boolean>( false );
   const [currentSubtitle, setCurrentSubtitle] = useState<string | null>( null );
 
   useDynamicInterval( () => {
@@ -28,7 +30,7 @@ export default function HorizonPage() : ReactElement {
   return (
     <div className={ css['Container'] }>
       <HorizonCanvasNoSSR
-        dpi={ highQuality ? 0.5 : 0.1 }
+        dpi={ highQuality ? 0.5 : 0.2 }
       />
 
       { currentSubtitle && (
@@ -41,15 +43,35 @@ export default function HorizonPage() : ReactElement {
 
       <button
         className={ classNames( {
-          [css['Quality']] : true,
-          [css['Quality-High']] : highQuality,
+          [css['Button']] : true,
+          [css['Button-Quality']] : true,
+          [css['Button-Active']] : highQuality,
         } ) }
-        onClick={ toggleHighQuality }
+        onClick={ () => setHighQuality( !highQuality ) }
       >
         { highQuality
           ? 'High'
           : 'Low' }
       </button>
+
+      <button
+        className={ classNames( {
+          [css['Button']] : true,
+          [css['Button-Info']] : true,
+          [css['Button-Active']] : openInfo,
+        } ) }
+        onClick={ () => setOpenInfo( !openInfo ) }
+      >
+        { openInfo
+          ? 'Close'
+          : 'Info' }
+      </button>
+
+      { openInfo && (
+        <HorizonInfo
+          onClose={ () => setOpenInfo( false ) }
+        />
+      ) }
     </div>
   )
 }

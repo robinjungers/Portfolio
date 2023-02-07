@@ -5,7 +5,7 @@ picture, figure, section, article,
 img, canvas, audio, video,
 h1, h2, h3, h4, h5, h6,
 code, pre, button, input,
-ul, ol, li
+ul, ol, li, em, i
 {
 	margin: 0;
 	padding: 0;

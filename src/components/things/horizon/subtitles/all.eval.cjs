@@ -13,8 +13,13 @@ async function readSrtFile( filename ) {
 
 module.exports = async function() {
   const sources = await Promise.all( [
+    readSrtFile( '2001.en.srt' ),
     readSrtFile( 'interstellar.en.srt' ),
     readSrtFile( 'interstellar.jp.srt' ),
+    readSrtFile( 'moon.en.srt' ),
+    readSrtFile( 'solaris.en.srt' ),
+    readSrtFile( 'sunshine.en.srt' ),
+    readSrtFile( 'tree.en.srt' ),
   ] );
 
   const containsKeyword = ( line ) => keywords.some( keyword => line.text.split( ' ' ).includes( keyword ) );

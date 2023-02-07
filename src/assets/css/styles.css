@@ -14,3 +14,7 @@ body
 	font-style: normal;
 	letter-spacing: -0.01em;
 }
+button
+{
+	cursor: pointer;
+}
