@@ -1,3 +1,5 @@
+import { shuffle } from "lodash";
+
 export function lerp( x : number, a : number, b : number, c : number, d : number ) : number {
 	return c + ( d - c ) * ( x - a ) / ( b - a );
 }
@@ -40,4 +42,16 @@ export function makeCSSTransform( offset : number, angle : number ) : string {
 
 export function wait( duration : number ) : Promise<void> {
 	return new Promise( resolve => setTimeout( resolve, duration ) );
+}
+
+export function* randomCircularGen<T>( items : T[] ) : Generator<T, T, T> {
+	let shuffledItems = [] as T[];
+
+	while ( true ) {
+		if ( shuffledItems.length === 0 ) {
+			shuffledItems = shuffle( items );
+		}
+
+		yield shuffledItems.pop();
+	}
 }

@@ -1,4 +1,4 @@
-import { randomChoice, randomInt, randomTrue } from '@/lib/utils';
+import { randomChoice, randomCircularGen, randomInt, randomTrue } from '@/lib/utils';
 import css from './HorizonPage.module.css';
 import dynamic from "next/dynamic";
 import { ReactElement, useState } from "react";
@@ -6,12 +6,14 @@ import useDynamicInterval from '@/hooks/useDynamicInterval';
 import useToggle from '@/hooks/useToggle';
 import classNames from 'classnames';
 import HorizonInfo from './HorizonInfo';
+import BaseHead from '@/components/BaseHead';
 
 const HorizonCanvasNoSSR = dynamic( () => import( './HorizonCanvas' ), {
   ssr : false,
 } );
 
 const subtitles = require( 'val-loader!./subtitles/all.eval.cjs' ) as string[];
+const subtitleGen = randomCircularGen( subtitles );
 
 export default function HorizonPage() : ReactElement {
   const [highQuality, setHighQuality] = useState<boolean>( false );
@@ -19,18 +21,23 @@ export default function HorizonPage() : ReactElement {
   const [currentSubtitle, setCurrentSubtitle] = useState<string | null>( null );
 
   useDynamicInterval( () => {
-    const nextSubtitle = randomTrue( 0.5 ) ? randomChoice( subtitles ) : null;
-    const nextPauseDuration = randomInt( 5e3, 30e3 );
+    const nextSubtitle = randomTrue( 0.5 ) ? subtitleGen.next().value : null;
+    const nextDuration = randomInt( 2e3, 10e3 );
           
     setCurrentSubtitle( nextSubtitle );
 
-    return nextPauseDuration;
+    return nextDuration;
   }, [] );
 
   return (
     <div className={ css['Container'] }>
+      <BaseHead
+        pageTitle="Horizon"
+        pageDescription="A procedural black hole designed to reproduce moments of beauty in sci-fi movies"
+      />
+
       <HorizonCanvasNoSSR
-        dpi={ highQuality ? 0.5 : 0.2 }
+        highQuality={ highQuality }
       />
 
       { currentSubtitle && (

@@ -3,20 +3,17 @@ import { ReactElement } from "react";
 import HorizonScene from "./HorizonScene";
 
 type HorizonCanvasProps = {
-  dpi : number;
+  highQuality : boolean;
 }
 
 export default function HorizonCanvas( props : HorizonCanvasProps ) : ReactElement {
   return (
     <Canvas
-      dpr={ props.dpi }
+      dpr={ props.highQuality ? 0.5 : 0.2 }
       orthographic
       camera={{
         near : 0.1,
         far : 10.0,
-      }}
-      style={{
-        imageRendering : 'pixelated',
       }}
     >
       <HorizonScene />

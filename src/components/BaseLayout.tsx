@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import Link from 'next/link';
 import Head from 'next/head';
 import { ReactElement, ReactNode } from 'react';
+import BaseHead from './BaseHead';
 
 export type BaseLayoutProps = {
 	isProject : boolean;
@@ -19,36 +20,10 @@ export default function BaseLayout( props : BaseLayoutProps ) : ReactElement {
         [css['Container-Project']] : props.isProject ?? false,
       } ) }
     >
-			<Head>
-				<title>
-					{ `Robin Jungers - ${ props.pageTitle }` }
-				</title>
-				<meta
-					name="description"
-					content={ props.pageDescription }
-					key="description"
-				/>
-				<meta
-					property="og:title"
-					content={ props.pageTitle }
-					key="og:title"
-				/>
-				<meta
-					property="og:description"
-					content={ props.pageDescription }
-					key="og:description"
-				/>
-				<meta
-					name="twitter:title"
-					content={ props.pageTitle }
-					key="twitter:title"
-				/>
-				<meta
-					name="twitter:description"
-					content={ props.pageDescription }
-					key="twitter:description"
-				/>
-			</Head>
+			<BaseHead
+				pageTitle={ props.pageTitle }
+				pageDescription={ props.pageDescription }
+			/>
 
       <header className={ css['Header'] }>
 				<Link href="/">
