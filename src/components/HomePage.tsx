@@ -41,16 +41,17 @@ export default function HomePage( props : HomePageProps ) : ReactElement {
 						>
 							<span className={ css['Summary_Divider'] } />
 							
-							<Link href={ `/projects/${ project.slug }` }>
-								<a className={ css['Summary_Link'] }>
-									<span className={ css['Summary_Title'] }>
-										{ project.title }
-									</span>
+							<Link
+								className={ css['Summary_Link'] }
+								href={ `/projects/${ project.slug }` }
+							>
+								<span className={ css['Summary_Title'] }>
+									{ project.title }
+								</span>
 
-									<span className={ css['Summary_Headline'] }>
-										{ project.headline }
-									</span>
-								</a>
+								<span className={ css['Summary_Headline'] }>
+									{ project.headline }
+								</span>
 							</Link>
 						</li>
 					) ) }

@@ -27,11 +27,9 @@ export default function BaseLayout( props : BaseLayoutProps ) : ReactElement {
 
       <header className={ css['Header'] }>
 				<Link href="/">
-					<a>
-						<h1 className={ css['Header_Name'] }>
-							Robin Jungers
-						</h1>
-					</a>
+					<h1 className={ css['Header_Name'] }>
+						Robin Jungers
+					</h1>
 				</Link>
 
 				<h3 className={ classnames(

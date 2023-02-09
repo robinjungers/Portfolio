@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
 import css from './ProjectPage.module.css';
-import ProjectImg from './ProjectImg';
+import ProjectImage from './ProjectImage';
 import BaseLayout from './BaseLayout';
 import ProjectText from './ProjectText';
 import { Project } from '@/interfaces';
+import Link from 'next/link';
 
 export type ProjectPageProps = {
   project : Project;
@@ -28,14 +29,17 @@ export default function ProjectPage( props : ProjectPageProps ) : ReactElement {
         { props.project.links && (
           <div className={ css['Links'] }>
             { props.project.links.map( ( link, i ) => (
-              <a
+              <Link
                 className={ css['Link'] }
                 key={ i }
                 href={ link.url }
-                target="_blank"
+                target={
+                  link.url.startsWith( '/' )
+                    ? '_self'
+                    : '_blank' }
               >
                 { link.title }
-              </a>
+              </Link>
             ) ) }
           </div>
         ) }
@@ -45,8 +49,8 @@ export default function ProjectPage( props : ProjectPageProps ) : ReactElement {
         <ul className={ css['Images'] }>
           { props.project.images.map( ( image, i ) => (
             <li className={ css['Image'] } key={ i }>
-              <ProjectImg
-                image={ image }
+              <ProjectImage
+                info={ image }
               />
             </li>
           ) ) }

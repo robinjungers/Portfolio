@@ -1,11 +1,8 @@
-import useOnWheel from "@/hooks/useOnWheel";
 import { ScreenQuad, useTexture } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { ReactElement, useEffect, useRef, useState } from "react";
-import { LinearFilter, RawShaderMaterial, RepeatWrapping, ShaderMaterialParameters, Texture, Vector2, Vector3 } from "three";
-
-const initialCamPos = new Vector3( 0.0, 0.0, -8.0 );
-const initialCamZoom = 1.0;
+import { useFrame, useThree } from "@react-three/fiber";
+import { meanBy } from "lodash";
+import { ReactElement, useEffect, useRef } from "react";
+import { LinearFilter, RawShaderMaterial, RepeatWrapping, ShaderMaterialParameters, Texture } from "three";
 
 const shaderOptions : ShaderMaterialParameters = {
   vertexShader : require( './horizon_vert.glsl' ),
@@ -15,8 +12,6 @@ const shaderOptions : ShaderMaterialParameters = {
     uTime : { value : 0.0 },
     uNoiseTex : { value : null },
     uRotation : { value : 0.0 },
-    uCamPos : { value : initialCamPos },
-    uCamZoom : { value : initialCamZoom },
   }
 }
 
@@ -29,21 +24,58 @@ export default function HorizonScene() : ReactElement {
     texture.wrapT = RepeatWrapping;
   } );
 
-  const [camPos, setCamPos] = useState<Vector3>( initialCamPos );
-  const [camZoom, setCamZoom] = useState<number>( initialCamZoom );
-
-  useOnWheel( ( dx : number, dy : number ) => {
-    if ( mat.current ) {
-      mat.current.uniforms.uRotation.value -= 1e-4 * dy;
-    }
-  }, [] );
-
   useFrame( three => {
     if ( mat.current ) {
       mat.current.uniforms.uAspect.value = three.viewport.aspect;
       mat.current.uniforms.uTime.value = three.clock.elapsedTime;
     }
   } );
+
+  const canvas = useThree( three => three.gl.domElement );
+
+  useEffect( () => {
+    let lastX : number | null = null;
+    let lastY : number | null = null;
+
+    const onTouchMove = ( e : TouchEvent ) => {
+      if ( e.touches.length === 2 ) {
+        e.preventDefault();
+
+        const x = meanBy( e.touches, 'clientX' );
+        const y = meanBy( e.touches, 'clientY' );
+        const dx = ( x - ( lastX ?? x ) );
+        const dy = ( y - ( lastY ?? y ) );
+
+        mat.current.uniforms.uRotation.value -= 2e-4 * dy;
+
+        lastX = x;
+        lastY = y;
+      }
+    };
+    const onTouchEnd = () => {
+      lastX = null;
+      lastY = null;
+    };
+    const onWheel = ( e : WheelEvent ) => {
+      e.preventDefault();
+
+      mat.current.uniforms.uRotation.value -= 1e-4 * e.deltaY;
+    };
+
+    canvas.addEventListener( 'wheel', onWheel, { passive : false } );
+    canvas.addEventListener( 'touchmove', onTouchMove, { passive : false } );
+    canvas.addEventListener( 'touchcancel', onTouchEnd );
+    canvas.addEventListener( 'touchend', onTouchEnd );
+
+    return () => {
+      canvas.removeEventListener( 'wheel', onWheel );
+      canvas.removeEventListener( 'touchmove', onTouchMove );
+      canvas.removeEventListener( 'touchcancel', onTouchEnd );
+      canvas.removeEventListener( 'touchend', onTouchEnd );
+    };
+  }, [
+    canvas,
+  ] );
 
   return (
     <ScreenQuad>
@@ -52,8 +84,6 @@ export default function HorizonScene() : ReactElement {
         attach="material"
         args={ [shaderOptions] }
         uniforms-uNoiseTex-value={ noiseTex }
-        uniforms-uCamPos-value={ camPos }
-        uniforms-uCamZoom-value={ camZoom }
       />
     </ScreenQuad>
   );

@@ -1,14 +1,14 @@
-import css from './ProjectImg.module.css';
+import css from './ProjectImage.module.css';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
 import useScrollPosition from '@/hooks/useScrollPosition';
-import { ProjectImage } from '@/interfaces';
+import { ProjectImageInfo } from '@/interfaces';
 
 export type ProjectImgProps = {
-  image : ProjectImage;
+  info : ProjectImageInfo;
 }
 
-export default function ProjectImg( props : ProjectImgProps ) : ReactElement {
+export default function ProjectImage( props : ProjectImgProps ) : ReactElement {
   const image = useRef<HTMLImageElement>( null );
 
   const [isLoaded, setIsLoaded] = useState<boolean>( false );
@@ -30,10 +30,10 @@ export default function ProjectImg( props : ProjectImgProps ) : ReactElement {
   return (
     <div className={ css['Container'] }>
       <div className={ css['Frame'] } style={{
-        backgroundColor : props.image.color1,
+        backgroundColor : props.info.color1,
       }}>
         <div className={ css['Inner'] } style={{
-          backgroundColor : props.image.color2,
+          backgroundColor : props.info.color2,
         }}>
           <img
             className={ classnames( {
@@ -41,10 +41,10 @@ export default function ProjectImg( props : ProjectImgProps ) : ReactElement {
               [css['Image-Active']] : isLoaded && isVisible,
             } ) }
             ref={ image }
-            alt={ props.image.alt }
-            src={ props.image.largeUrl }
-            width={ props.image.largeWidth }
-            height={ props.image.largeHeight }
+            alt={ props.info.alt }
+            src={ props.info.largeUrl }
+            width={ props.info.largeWidth }
+            height={ props.info.largeHeight }
             onLoad={ () => setIsLoaded( true ) }
           />
         </div>

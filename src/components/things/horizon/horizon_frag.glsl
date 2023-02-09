@@ -1,11 +1,8 @@
-precision lowp float;
+precision highp float;
 
-uniform float uAspect;
 uniform float uTime;
 uniform sampler2D uNoiseTex;
 uniform float uRotation;
-uniform vec3 uCamPos;
-uniform float uCamZoom;
 
 varying vec2 uv;
 
@@ -110,8 +107,8 @@ vec3 computeLightBending( vec3 pos, vec3 dir, float f )
 
 void main( void ) {
 	vec2 uv2 = uv + 0.002 * rand( vec2( uTime ) );
-	vec3 pos = uCamPos;
-	vec3 dir = normalize( vec3( uv2, uCamZoom ) );
+	vec3 pos = vec3( 0.0, 0.0, -8.0 );
+	vec3 dir = normalize( vec3( uv2, 1.0 ) );
 	vec4 locColor = vec4( 0.0 );
 	vec4 totColor = vec4( 0.0 );
 	float locDens = 0.0;

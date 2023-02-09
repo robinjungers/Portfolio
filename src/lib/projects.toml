@@ -45,6 +45,10 @@ roles = [
   "Programming"
 ]
 
+[[projects.links]]
+url = "/things/horizon"
+title = "Interactive demo"
+
 [[projects.images]]
 path = "horizon_1.png"
 alt = "A capture of the visuals in movement"

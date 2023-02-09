@@ -1,4 +1,4 @@
-export type ProjectImage = {
+export type ProjectImageInfo = {
   largeUrl : string;
   largeWidth : number;
   largeHeight : number;
@@ -19,7 +19,7 @@ export type Project = {
   slug : string;
   title : string;
   headline : string;
-  images : ProjectImage[];
+  images : ProjectImageInfo[];
   text : string;
   roles : string[];
   links : ProjectLink[];

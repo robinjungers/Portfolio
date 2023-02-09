@@ -3,18 +3,19 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  background-color: var(--color-dark);
 }
 .Subtitle
 {
   position: absolute;
-  bottom: 50px;
+  bottom: 100px;
   left: 0;
   width: 100vw;
   text-align: center;
   font-family: monospace;
   font-size: 20px;
   text-transform: lowercase;
-  color: hsl(0, 0%, 95%);
+  color: hsl(0, 0%, 90%);
   padding: 0 5vw;
 }
 .Subtitle span

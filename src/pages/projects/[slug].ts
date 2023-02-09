@@ -4,7 +4,7 @@ import path from 'path';
 import sharp, { Metadata, OutputInfo } from 'sharp';
 import kmeans from 'ml-kmeans';
 import chroma from 'chroma-js';
-import { Project, ProjectImage } from '@/interfaces';
+import { Project, ProjectImageInfo } from '@/interfaces';
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import { ProjectPageProps } from '@/components/ProjectPage';
 
@@ -142,7 +142,7 @@ export async function getStaticProps( ctx : GetStaticPropsContext ) : Promise<Ge
     props : {
       project : {
         ...( project as Project ),
-        images : images as ProjectImage[],
+        images : images as ProjectImageInfo[],
       },
     },
   };

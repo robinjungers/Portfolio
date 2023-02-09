@@ -20,7 +20,7 @@ export default function HorizonInfo( props : HorizonInfoProps ) : ReactElement {
         <p className={ css['Text'] }>
           <em>Horizon</em> is a procedural black hole designed to replicate moments of beauty in sci-fi movies.
           It displays excerpts from the subtitle tracks of famous movies - <em>Interstellar</em>, <em>Solaris</em>, etc.
-          Try scrolling to force the rotation.
+          Try scrolling (or dragging with 2 fingers on touch devices) to force the rotation.
         </p>
 
         <button
