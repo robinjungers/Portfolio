@@ -13,7 +13,6 @@ export default function _App( props : AppProps ) : ReactElement {
 	return (
 		<>
 			<Head>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				<link rel="icon" type="image/png" href="/images/favicon.png" />
 			</Head>
 			

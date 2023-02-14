@@ -34,11 +34,18 @@ export default function HorizonScene() : ReactElement {
   const canvas = useThree( three => three.gl.domElement );
 
   useEffect( () => {
+    let hasStartedDragging = false;
     let lastX : number | null = null;
     let lastY : number | null = null;
 
+    const onTouchStart = ( e : TouchEvent ) => {
+      if ( e.touches.length == 2 ) {
+        hasStartedDragging = true;
+      }
+    };
+
     const onTouchMove = ( e : TouchEvent ) => {
-      if ( e.touches.length === 2 ) {
+      if ( hasStartedDragging ) {
         e.preventDefault();
 
         const x = meanBy( e.touches, 'clientX' );
@@ -52,10 +59,14 @@ export default function HorizonScene() : ReactElement {
         lastY = y;
       }
     };
-    const onTouchEnd = () => {
-      lastX = null;
-      lastY = null;
+    const onTouchEnd = ( e : TouchEvent ) => {
+      if ( e.touches.length === 0 ) {
+        hasStartedDragging = false;
+        lastX = null;
+        lastY = null;
+      }
     };
+
     const onWheel = ( e : WheelEvent ) => {
       e.preventDefault();
 
@@ -63,6 +74,7 @@ export default function HorizonScene() : ReactElement {
     };
 
     canvas.addEventListener( 'wheel', onWheel, { passive : false } );
+    canvas.addEventListener( 'touchstart', onTouchStart );
     canvas.addEventListener( 'touchmove', onTouchMove, { passive : false } );
     canvas.addEventListener( 'touchcancel', onTouchEnd );
     canvas.addEventListener( 'touchend', onTouchEnd );

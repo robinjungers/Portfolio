@@ -4,11 +4,21 @@ import { ReactElement } from "react";
 type BaseHeadProps = {
   pageTitle : string;
   pageDescription : string;
+  disableZoom? : boolean;
 }
 
 export default function BaseHead( props : BaseHeadProps ) : ReactElement {
   return (
     <Head>
+      <meta
+        name="viewport"
+        content={
+          props.disableZoom
+            ? 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+            : 'width=device-width, initial-scale=1.0' }
+        key="viewport"
+      />
+
       <title>
         { `Robin Jungers - ${ props.pageTitle }` }
       </title>

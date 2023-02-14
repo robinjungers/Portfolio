@@ -1,7 +1,6 @@
 import css from './ProjectImage.module.css';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
-import useScrollPosition from '@/hooks/useScrollPosition';
 import { ProjectImageInfo } from '@/interfaces';
 
 export type ProjectImgProps = {
@@ -12,19 +11,9 @@ export default function ProjectImage( props : ProjectImgProps ) : ReactElement {
   const image = useRef<HTMLImageElement>( null );
 
   const [isLoaded, setIsLoaded] = useState<boolean>( false );
-  const [isVisible, setIsVisible] = useState<boolean>( false );
 
   useEffect( () => {
     setIsLoaded( image.current.complete );
-  }, [] );
-
-  useScrollPosition( () => {
-    const rect = image.current.getBoundingClientRect();
-
-    setIsVisible(
-      rect.top < 0.75 * window.innerHeight &&
-      rect.bottom > 0.1 * window.innerHeight
-    );
   }, [] );
 
   return (
@@ -38,7 +27,7 @@ export default function ProjectImage( props : ProjectImgProps ) : ReactElement {
           <img
             className={ classnames( {
               [css['Image']] : true,
-              [css['Image-Active']] : isLoaded && isVisible,
+              [css['Image-Active']] : isLoaded,
             } ) }
             ref={ image }
             alt={ props.info.alt }

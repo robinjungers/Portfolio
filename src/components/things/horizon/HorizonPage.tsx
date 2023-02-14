@@ -34,6 +34,7 @@ export default function HorizonPage() : ReactElement {
       <BaseHead
         pageTitle="Horizon"
         pageDescription="A procedural black hole designed to reproduce moments of beauty in sci-fi movies"
+        disableZoom
       />
 
       <HorizonCanvasNoSSR
@@ -69,9 +70,7 @@ export default function HorizonPage() : ReactElement {
         } ) }
         onClick={ () => setOpenInfo( !openInfo ) }
       >
-        { openInfo
-          ? 'Close'
-          : 'Info' }
+        info
       </button>
 
       { openInfo && (

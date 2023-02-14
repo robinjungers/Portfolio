@@ -9,7 +9,7 @@ type HorizonCanvasProps = {
 export default function HorizonCanvas( props : HorizonCanvasProps ) : ReactElement {
   return (
     <Canvas
-      dpr={ props.highQuality ? 0.5 : 0.2 }
+      dpr={ props.highQuality ? 0.5 : 0.25 }
       orthographic
       camera={{
         near : 0.1,
