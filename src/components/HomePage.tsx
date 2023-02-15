@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { makeCSSTransform } from '@/lib/utils';
 import { Project } from '@/interfaces';
 import BaseLayout from './BaseLayout';
+import Appearing from './Appearing';
 
 export type HomePageProps = {
 	projects : Project[];
@@ -30,9 +31,13 @@ export default function HomePage( props : HomePageProps ) : ReactElement {
 
 				<ol className={ css['Summaries'] }>
 					{ props.projects.map( ( project, i ) => (
-						<li
+						<Appearing
+							as="li"
+							delay={ i * 40 }
+          		duration={ 500 }
 							className={ css['Summary'] }
-							key={ project.slug } style={{
+							key={ project.slug }
+							style={{
 								transform : makeCSSTransform(
 									randomOffsets[i] * maxSpan,
 									randomAngles[i] * 3.0,
@@ -53,7 +58,7 @@ export default function HomePage( props : HomePageProps ) : ReactElement {
 									{ project.headline }
 								</span>
 							</Link>
-						</li>
+						</Appearing>
 					) ) }
 				</ol>
 			</div>

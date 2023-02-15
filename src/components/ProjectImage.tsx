@@ -3,11 +3,11 @@ import { ReactElement, useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { ProjectImageInfo } from '@/interfaces';
 
-export type ProjectImgProps = {
+export type ProjectImageProps = {
   info : ProjectImageInfo;
 }
 
-export default function ProjectImage( props : ProjectImgProps ) : ReactElement {
+export default function ProjectImage( props : ProjectImageProps ) : ReactElement {
   const image = useRef<HTMLImageElement>( null );
 
   const [isLoaded, setIsLoaded] = useState<boolean>( false );

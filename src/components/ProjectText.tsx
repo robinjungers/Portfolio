@@ -1,8 +1,9 @@
 import useNoiseValues from '@/hooks/useNoiseValues';
 import useWindowSize from '@/hooks/useWindowSize';
 import { makeCSSTransform } from '@/lib/utils';
-import React, { ReactElement } from 'react';
+import { ReactElement, useMemo } from 'react';
 import css from './ProjectText.module.css';
+import Appearing from './Appearing';
 
 function countWordsForChars( words : string[], n : number ) : number {
   let i = 0;
@@ -46,7 +47,7 @@ export default function ProjectText( props : ProjectTextProps ) : ReactElement {
   const maxWidth = useWindowSize()[0];
   const maxSpan = maxWidth > 900 ? 0.05 * maxWidth : 0.0;
 
-  const lines = React.useMemo( () => {
+  const lines = useMemo( () => {
     const charsPerLine =
       maxWidth > 900 ? 60 :
       maxWidth > 600 ? 50 : 40;
@@ -63,9 +64,13 @@ export default function ProjectText( props : ProjectTextProps ) : ReactElement {
   return (
     <p className={ css['Lines'] }>
       { lines.map( ( line, i ) => (
-        <span
+        <Appearing
           key={ i }
-          className={ css['Line'] } style={{
+          as="span"
+          delay={ i * 40 }
+          duration={ 500 }
+          className={ css['Line'] }
+          style={{
             transform : makeCSSTransform(
               randomOffsets[i] * maxSpan,
               randomAngles[i] * 3.0,
@@ -73,7 +78,7 @@ export default function ProjectText( props : ProjectTextProps ) : ReactElement {
           }}
         >
           { line }
-        </span>
+        </Appearing>
       ) ) }
     </p>
   );
