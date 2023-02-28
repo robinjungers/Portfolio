@@ -107,7 +107,7 @@ async function preparePalette( filename ) : Promise<BasePalette> {
   };
 }
 
-export async function getStaticPaths() : Promise<GetStaticPathsResult<ProjectPageSlug>> {
+export function getStaticPaths() : GetStaticPathsResult<ProjectPageSlug> {
   return {
     fallback : false,
     paths : projects.map( project => ( {

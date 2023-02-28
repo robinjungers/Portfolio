@@ -225,6 +225,10 @@ path = "entropy_6.png"
 alt = "The visuals on screen at the gallery"
 
 [[projects.images]]
+path = "entropy_7.png"
+alt = "The exhibition setup"
+
+[[projects.images]]
 path = "entropy_5.png"
 alt = "The surrounding environment as seen from the gallery"
 
